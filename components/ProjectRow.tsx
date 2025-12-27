@@ -15,7 +15,7 @@ const ProjectCard = React.memo<{
   const thumbnailUrl = `https://img.youtube.com/vi/${project.youtubeId}/maxresdefault.jpg`;
 
   return (
-    <div className="flex-shrink-0 w-[600px] h-[400px] rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm border border-gray-700/50 hover:border-aflow-accent/50 hover:shadow-[0_0_50px_rgba(104,138,221,0.3)] transition-all group">
+    <div className="flex-shrink-0 w-[600px] h-[400px] overflow-hidden bg-white/10 backdrop-blur-sm border border-gray-700/50 hover:border-aflow-accent/50 hover:shadow-[0_0_50px_rgba(104,138,221,0.3)] transition-all group relative">
       {/* Media Container */}
       <div className="w-full h-full aspect-video bg-black/50 relative overflow-hidden">
         {project.youtubeId ? (
@@ -72,8 +72,8 @@ const ProjectCard = React.memo<{
         )}
       </div>
       
-      {/* Content Info */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-transparent">
+      {/* Content Info - 호버 시에만 표시 */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <h3 className="text-xl font-bold text-white group-hover:text-aflow-accent transition-colors duration-300 truncate">
           {project.title}
         </h3>
