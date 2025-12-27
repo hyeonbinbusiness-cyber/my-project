@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>aflow | motion designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Google Sans Flex"', '"Roboto Flex"', 'sans-serif'],
+            },
+            colors: {
+              'aflow-black': '#050505',
+              'aflow-gray': '#1a1a1a',
+              'aflow-accent': '#688ADD', // Blue - main accent color matching aflow text
+              'aflow-blue': '#688ADD', // Sky blue
+              'aflow-pink': '#FF69B4', // Pink
+              'aflow-purple': '#9B59B6', // Purple
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'marquee': 'marquee 25s linear infinite',
+              'grain': 'grain 8s steps(10) infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              },
+              grain: {
+                '0%, 100%': { transform: 'translate(0, 0)' },
+                '10%': { transform: 'translate(-5%, -10%)' },
+                '20%': { transform: 'translate(-15%, 5%)' },
+                '30%': { transform: 'translate(7%, -25%)' },
+                '40%': { transform: 'translate(-5%, 25%)' },
+                '50%': { transform: 'translate(-15%, 10%)' },
+                '60%': { transform: 'translate(15%, 0%)' },
+                '70%': { transform: 'translate(0%, 15%)' },
+                '80%': { transform: 'translate(3%, 35%)' },
+                '90%': { transform: 'translate(-10%, 10%)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        background-color: #161618;
+        color: #ffffff;
+        font-family: 'Roboto Flex', sans-serif;
+        overflow-x: hidden;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #161618; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #a78bfa; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #688ADD; 
+      }
+            .cursor-follow {
+              pointer-events: none;
+              position: fixed;
+              width: 20px;
+              height: 20px;
+              border: 2px solid #688ADD;
+              border-radius: 50%;
+              z-index: 9999;
+              transition: width 0.3s, height 0.3s, transform 0.1s;
+              mix-blend-mode: difference;
+              box-shadow: 0 0 10px rgba(104, 138, 221, 0.5);
+            }
+
+            .cursor-follow.large {
+              width: 40px;
+              height: 40px;
+            }
+      
+      /* Noise Effect */
+      .bg-noise {
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        right: -50%;
+        bottom: -50%;
+        width: 200%;
+        height: 200vh;
+        background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+        background-repeat: repeat;
+        animation: grain 8s steps(10) infinite;
+        opacity: 0.04;
+        z-index: 9998;
+        pointer-events: none;
+      }
+
+      /* Moving Gradient Animation */
+      @keyframes movingGradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        25% {
+          background-position: 100% 50%;
+        }
+        50% {
+          background-position: 100% 0%;
+        }
+        75% {
+          background-position: 0% 100%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #688ADD 0%,
+          #7A95E8 20%,
+          #8BA0ED 35%,
+          #9BABF2 50%,
+          #8A9EE7 65%,
+          #768BC2 80%,
+          #63666C 100%
+        );
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: movingGradient 10s ease infinite;
+      }
+
+      @keyframes gridMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
+      }
+
+      /* Hide YouTube UI elements */
+      iframe[src*="youtube.com/embed"] {
+        pointer-events: auto !important;
+      }
+
+      /* Try to hide YouTube UI with CSS (may not work due to iframe restrictions) */
+      .youtube-embed-container {
+        position: relative;
+      }
+
+      .youtube-embed-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
