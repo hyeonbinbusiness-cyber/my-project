@@ -4,12 +4,10 @@ import Hero from './components/Hero';
 import ProjectGrid from './components/ProjectGrid';
 import About from './components/About';
 import Footer from './components/Footer';
-import Preloader from './components/Preloader';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(true);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [cursorSize, setCursorSize] = useState<'normal' | 'large'>('normal');
   const [showAdmin, setShowAdmin] = useState(false);
@@ -73,8 +71,6 @@ const App: React.FC = () => {
 
   return (
     <>
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
-      
       <div className="min-h-screen text-white font-sans selection:bg-aflow-accent selection:text-black overflow-hidden relative" style={{ backgroundColor: '#161618' }}>
         {/* Noise Overlay */}
         <div className="bg-noise"></div>
@@ -100,7 +96,6 @@ const App: React.FC = () => {
         
         <main>
           <Hero />
-          <ProjectGrid />
           <About />
         </main>
 

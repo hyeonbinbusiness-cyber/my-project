@@ -32,9 +32,10 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
   return (
     <div 
-      className={`fixed inset-0 z-[99999] bg-aflow-black flex flex-col justify-between p-10 transition-transform duration-[1000ms] cubic-bezier(0.76, 0, 0.24, 1) ${
+      className={`fixed inset-0 z-[99999] bg-aflow-black flex flex-col justify-between p-10 transition-transform duration-[1000ms] ${
         isExiting ? '-translate-y-full' : 'translate-y-0'
       }`}
+      style={{ transitionTimingFunction: 'cubic-bezier(0.76, 0, 0.24, 1)' }}
     >
       <div className="flex justify-between items-start font-mono text-xs md:text-sm text-aflow-accent">
         <span>SEOUL, KR</span>
@@ -42,7 +43,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-transparent stroke-text" style={{ WebkitTextStroke: '1px #9B59B6' }}>
+        <h1 className="text-6xl md:text-9xl font-bold tracking-tighter text-transparent" style={{ WebkitTextStroke: '1px #9B59B6' }}>
           {progress}%
         </h1>
         <div className="mt-4 h-1 w-64 bg-gray-900 rounded-full overflow-hidden">
